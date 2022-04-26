@@ -1,0 +1,14 @@
+.container {
+    margin: 0 4em;
+}
+
+.header img {
+    width: 100%;
+    height: auto;
+}
+
+@media only screen and (max-width: 375px) {
+    .container {
+        margin: 0 1em;
+    }
+}
