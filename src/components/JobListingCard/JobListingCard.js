@@ -36,16 +36,20 @@ const JobListingCard = ({ job }) => {
                 </div>
             </div>
 
-            <div className={`${styles.skillSec}`}>
-                {
-                    skills.map((skill, idx) => <p
-                        key={idx}
-                        className={`${styles.skill}`}
-                        onClick={() => handleFilter(skill)}
-                    >
-                        {skill}
-                    </p>)
-                }
+            <hr />
+
+            <div>
+                <div className={`${styles.skills}`}>
+                    {
+                        skills.map((skill, idx) => <p
+                            key={idx}
+                            className={`${styles.skill}`}
+                            onClick={() => handleFilter(skill)}
+                        >
+                            {skill}
+                        </p>)
+                    }
+                </div>
             </div>
         </div>
     );
