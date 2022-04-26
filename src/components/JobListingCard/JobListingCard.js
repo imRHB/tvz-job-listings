@@ -4,7 +4,7 @@ import styles from './JobListingCard.module.css';
 const JobListingCard = ({ job }) => {
     const [filtered, setFiltered] = useState([]);
 
-    const { id, company, logo, new: newJob, featured, position, role, level, postedAt, contract, location, languages, tools } = job;
+    const { company, logo, new: newJob, featured, position, role, level, postedAt, contract, location, languages, tools } = job;
     const skills = [role, level, ...languages, ...tools];
 
     // let filteredSkills = [];

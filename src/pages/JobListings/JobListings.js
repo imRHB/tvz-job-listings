@@ -19,8 +19,6 @@ const JobListings = () => {
             {/* <div className={`${styles.header}`}>
                 <img src={bgHeader} alt="header" />
             </div> */}
-            <h1>Job Listings: {jobs.length}</h1>
-
             <div className="row">
                 {
                     jobs.map(job => <JobListingCard
