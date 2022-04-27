@@ -7,7 +7,7 @@
     height: auto;
 }
 
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 376px) {
     .container {
         margin: 0 1em;
     }

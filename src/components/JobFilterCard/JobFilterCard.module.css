@@ -32,8 +32,20 @@
     text-decoration: underline;
 }
 
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 376px) {
     .container {
         margin: 0 1em;
+    }
+
+    .jobFilterCard {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+        margin: 70px 0px;
+    }
+
+    .filteredItems {
+        flex-wrap: wrap;
     }
 }

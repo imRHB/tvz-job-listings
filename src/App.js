@@ -1,11 +1,14 @@
 import './App.css';
+import JobProvider from "./contexts/JobProvider";
 import Home from "./pages/Landing/Home";
 
 function App() {
   return (
-    <div className="App">
-      <Home />
-    </div>
+    <JobProvider>
+      <div className="App">
+        <Home />
+      </div>
+    </JobProvider>
   );
 }
 

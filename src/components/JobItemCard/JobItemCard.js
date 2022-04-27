@@ -1,17 +1,21 @@
-import React, { useState } from 'react';
-import styles from './JobListingCard.module.css';
+import React from 'react';
+import useJobs from "../../hooks/useJobs";
+import styles from './JobItemCard.module.css';
 
-const JobListingCard = ({ job }) => {
-    const [filtered, setFiltered] = useState([]);
+const JobItemCard = ({ job }) => {
+    // const [filtered, setFiltered] = useState([]);
+    const { skillItems, setSkillItems } = useJobs();
 
     const { company, logo, new: newJob, featured, position, role, level, postedAt, contract, location, languages, tools } = job;
     const skills = [role, level, ...languages, ...tools];
 
     // let filteredSkills = [];
 
-    const handleFilter = (skill) => {
-        console.log(filtered.indexOf(skill));
-        setFiltered([...filtered, skill]);
+    const handleAddFilter = (skill) => {
+        if (!skillItems.includes(skill)) {
+            setSkillItems([...skillItems, skill]);
+        }
+        return skillItems;
     };
 
     return (
@@ -44,7 +48,7 @@ const JobListingCard = ({ job }) => {
                         skills.map((skill, idx) => <p
                             key={idx}
                             className={`${styles.skill}`}
-                            onClick={() => handleFilter(skill)}
+                            onClick={() => handleAddFilter(skill)}
                         >
                             {skill}
                         </p>)
@@ -55,4 +59,4 @@ const JobListingCard = ({ job }) => {
     );
 };
 
-export default JobListingCard;
+export default JobItemCard;

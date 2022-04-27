@@ -1,30 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styles from './JobListings.module.css';
 
-import bgHeader from '../../assets/images/bg-header-desktop.svg';
-import JobListingCard from "../../components/JobListingCard/JobListingCard";
+import useJobs from "../../hooks/useJobs";
+import JobItemCard from "../../components/JobItemCard/JobItemCard";
 
 const JobListings = () => {
-    const [jobs, setJobs] = useState([]);
-    console.log(jobs);
+    // const [jobs, setJobs] = useState([]);
+    const { jobLists } = useJobs();
 
-    useEffect(() => {
+    /* useEffect(() => {
         fetch('./data.json')
             .then(res => res.json())
             .then(data => setJobs(data));
-    }, []);
+    }, []); */
 
     return (
         <div className={`${styles.container}`}>
             {/* <div className={`${styles.header}`}>
                 <img src={bgHeader} alt="header" />
             </div> */}
-            <div className="row">
+            <div>
                 {
-                    jobs.map(job => <JobListingCard
+                    jobLists.map(job => <JobItemCard
                         key={job.id}
                         job={job}
-                    ></JobListingCard>)
+                    ></JobItemCard>)
                 }
             </div>
         </div>
