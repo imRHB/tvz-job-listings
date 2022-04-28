@@ -3,13 +3,10 @@ import useJobs from "../../hooks/useJobs";
 import styles from './JobItemCard.module.css';
 
 const JobItemCard = ({ job }) => {
-    // const [filtered, setFiltered] = useState([]);
     const { skillItems, setSkillItems } = useJobs();
 
     const { company, logo, new: newJob, featured, position, role, level, postedAt, contract, location, languages, tools } = job;
     const skills = [role, level, ...languages, ...tools];
-
-    // let filteredSkills = [];
 
     const handleAddFilter = (skill) => {
         if (!skillItems.includes(skill)) {

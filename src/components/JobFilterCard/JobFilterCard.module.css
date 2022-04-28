@@ -9,18 +9,25 @@
 
 .jobFilterCard {
     margin: 40px 0;
-    padding: 24px;
-    border: 1px solid hsl(180, 29%, 50%);
+    margin-top: -40px;
+    padding: 32px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 4px 8px 20px rgba(230, 221, 221, 0.8);
+    background: hsl(180, 31%, 95%);
+    box-shadow: 0 0 24px 1px rgba(0, 0, 0, 0.08);
     border-radius: 4px;
+    transition: 0.4s;
+}
+
+.filterAlt {
+    color: hsl(180, 29%, 50%);
 }
 
 .filteredItems {
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 .clear {
@@ -32,20 +39,28 @@
     text-decoration: underline;
 }
 
-@media only screen and (max-width: 376px) {
+@media only screen and (max-width: 375px),
+(min-width:375px) and (max-width: 768px) {
     .container {
-        margin: 0 1em;
+        margin: 0 1.5em;
     }
 
     .jobFilterCard {
         display: flex;
-        flex-direction: column;
         gap: 16px;
-        align-items: flex-start;
         margin: 70px 0px;
+        margin-top: -40px;
     }
+}
 
-    .filteredItems {
-        flex-wrap: wrap;
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        margin: 0 3em;
+    }
+}
+
+@media only screen and (min-width: 1024px) and (min-width: 1400px) {
+    .container {
+        margin: 0 6em;
     }
 }

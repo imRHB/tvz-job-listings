@@ -1,12 +1,18 @@
 .card {
-    border: 1px solid hsl(180, 29%, 50%);
-    /* border-left: 4px solid gray; */
+    border-left: 4px solid transparent;
     display: flex;
+    gap: 8px;
     align-items: center;
     margin: 40px 0;
     padding: 24px;
-    box-shadow: 4px 8px 20px rgba(230, 221, 221, 0.8);
+    box-shadow: 0 0 24px 1px rgba(0, 0, 0, 0.08);
     border-radius: 4px;
+    transition: 0.4s;
+}
+
+.card:hover {
+    border-left: 4px solid hsl(180, 8%, 52%);
+    box-shadow: 0 0 32px 1px rgba(0, 0, 0, 0.12);
 }
 
 .logo img {
@@ -60,6 +66,7 @@
 
 .skills {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .skill {
@@ -76,7 +83,8 @@
     cursor: pointer;
 }
 
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 375px),
+(min-width:375px) and (max-width: 768px) {
     .card {
         display: flex;
         flex-direction: column;
@@ -94,9 +102,5 @@
 
     .jobDetailsSec {
         margin-left: 0px;
-    }
-
-    .skills {
-        flex-wrap: wrap;
     }
 }
