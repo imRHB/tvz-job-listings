@@ -1,11 +1,8 @@
 import React from 'react';
-import useJobs from "../../hooks/useJobs";
 import SkillItemCard from "../SkillItemCard/SkillItemCard";
 import styles from './JobFilterCard.module.css';
 
-const JobFilterCard = () => {
-    const { skillItems, setSkillItems } = useJobs();
-
+const JobFilterCard = ({ skillItems, setSkillItems }) => {
     const handleClearItems = () => {
         setSkillItems([]);
     };
@@ -14,7 +11,7 @@ const JobFilterCard = () => {
         <div className={`${styles.container}`}>
             <div className={`${styles.jobFilterCard}`}>
                 {
-                    skillItems.length > 0 ? <div className={`${styles.filteredItems}`}>
+                    skillItems?.length > 0 ? <div className={`${styles.filteredItems}`}>
                         {
                             skillItems?.map((item, idx) => <SkillItemCard
                                 key={idx}

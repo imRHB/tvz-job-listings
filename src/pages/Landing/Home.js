@@ -8,12 +8,12 @@ const Home = () => {
     const { jobLists, setJobLists, skillItems, setSkillItems } = useJobs();
 
     return (
-        <div>
+        <div style={{ minHeight: '100vh' }}>
             <div className={`${styles.headerBg}`}>
                 {/* background image */}
             </div>
-            <JobFilterCard jobLists={jobLists} skillItems={skillItems} setSkillItems={setSkillItems} setJobLists={setJobLists} />
-            <JobListings jobLists={jobLists} skillItems={skillItems} setSkillItems={setSkillItems} setJobLists={setJobLists} />
+            <JobFilterCard jobLists={jobLists} setJobLists={setJobLists} skillItems={skillItems} setSkillItems={setSkillItems} />
+            <JobListings jobLists={jobLists} setJobLists={setJobLists} skillItems={skillItems} setSkillItems={setSkillItems} />
         </div>
     );
 };

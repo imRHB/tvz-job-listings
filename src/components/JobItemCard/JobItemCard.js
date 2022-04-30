@@ -1,12 +1,15 @@
 import React from 'react';
-import useJobs from "../../hooks/useJobs";
 import styles from './JobItemCard.module.css';
 
-const JobItemCard = ({ job }) => {
-    const { skillItems, setSkillItems } = useJobs();
+const JobItemCard = ({ job, skillItems, setSkillItems }) => {
 
     const { company, logo, new: newJob, featured, position, role, level, postedAt, contract, location, languages, tools } = job;
     const skills = [role, level, ...languages, ...tools];
+    job.skills = skills;
+
+    // const filteredJobs = skillItems?.map(skill => job.skills?.includes(skill));
+    // console.log(filteredJobs.every(res => res === true && console.log(job)));
+    // console.log(filteredJobs);
 
     const handleAddFilter = (skill) => {
         if (!skillItems.includes(skill)) {
@@ -22,24 +25,26 @@ const JobItemCard = ({ job }) => {
             </div>
 
             <div className={`${styles.jobDetailsSec}`}>
-                <div className={`${styles.postingDetails}`}>
-                    <span className={`${styles.company}`}>{company}</span>
-                    <small><span className={newJob ? `${styles.newJob}` : ''}>{newJob ? 'NEW!' : ''}</span></small>
-                    <small><span className={featured ? `${styles.featured}` : ''}>{featured ? 'FEATURED' : ''}</span></small>
+                <div className={`${styles.jobDetails}`}>
+                    <div className={`${styles.postingDetails}`}>
+                        <span className={`${styles.company}`}>{company}</span>
+                        <small><span className={newJob ? `${styles.newJob}` : ''}>{newJob ? 'NEW!' : ''}</span></small>
+                        <small><span className={featured ? `${styles.featured}` : ''}>{featured ? 'FEATURED' : ''}</span></small>
+                    </div>
+
+                    <div>
+                        <span className={`${styles.position}`}>{position}</span>
+                    </div>
+
+                    <div className={`${styles.type}`}>
+                        {postedAt} <span style={{ fontSize: '4px', margin: '0px 6px' }}><i className="fa-solid fa-circle"></i></span> {contract} <span style={{ fontSize: '4px', margin: '0px 6px' }}><i className="fa-solid fa-circle"></i></span> {location}
+                    </div>
                 </div>
 
-                <div>
-                    <span className={`${styles.position}`}>{position}</span>
+                <div className={`${styles.hrLine}`}>
+                    {/* horizontal line */}
                 </div>
 
-                <div className={`${styles.type}`}>
-                    {postedAt} . {contract} . {location}
-                </div>
-            </div>
-
-            <hr />
-
-            <div>
                 <div className={`${styles.skills}`}>
                     {
                         skills.map((skill, idx) => <p

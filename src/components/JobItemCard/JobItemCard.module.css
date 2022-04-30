@@ -1,10 +1,10 @@
 .card {
     border-left: 4px solid transparent;
     display: flex;
-    gap: 8px;
     align-items: center;
     margin: 40px 0;
     padding: 24px;
+    background-color: #fff;
     box-shadow: 0 0 24px 1px rgba(0, 0, 0, 0.08);
     border-radius: 4px;
     transition: 0.4s;
@@ -21,6 +21,14 @@
 }
 
 .jobDetailsSec {
+    display: flex;
+    flex: 1;
+    gap: 16px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.jobDetails {
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -61,12 +69,20 @@
 
 .type {
     color: hsl(180, 8%, 52%);
+    display: flex;
+    align-items: center;
 }
 
+.hrLine {
+    width: 100%;
+    border-top: 2px solid hsl(180, 29%, 50%);
+    display: none;
+}
 
 .skills {
     display: flex;
     flex-wrap: wrap;
+    place-items: flex-end;
 }
 
 .skill {
@@ -96,11 +112,22 @@
     .logo img {
         width: 64px;
         height: auto;
-        margin-top: -60px;
+        margin-top: -56px;
         margin-bottom: 12px;
     }
 
     .jobDetailsSec {
+        display: flex;
+        flex-direction: column;
         margin-left: 0px;
+        place-items: flex-start;
+    }
+
+    .jobDetails {
+        margin-left: 0px;
+    }
+
+    .hrLine {
+        display: block;
     }
 }
