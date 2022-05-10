@@ -1,22 +1,16 @@
 import React from 'react';
 import styles from './JobItemCard.module.css';
 
-const JobItemCard = ({ job, skillItems, setSkillItems }) => {
+const JobItemCard = ({ job, onSelectFilter }) => {
 
     const { company, logo, new: newJob, featured, position, role, level, postedAt, contract, location, languages, tools } = job;
-    const skills = [role, level, ...languages, ...tools];
-    job.skills = skills;
 
-    // const filteredJobs = skillItems?.map(skill => job.skills?.includes(skill));
-    // console.log(filteredJobs.every(res => res === true && console.log(job)));
-    // console.log(filteredJobs);
-
-    const handleAddFilter = (skill) => {
-        if (!skillItems.includes(skill)) {
-            setSkillItems([...skillItems, skill]);
-        }
-        return skillItems;
-    };
+    let allTags = [
+        ...languages.map(tag => ["languages", tag]),
+        ...tools.map(tag => ["tools", tag]),
+        ["role", role],
+        ["level", level]
+    ];
 
     return (
         <div className={`${styles.card}`}>
@@ -47,14 +41,15 @@ const JobItemCard = ({ job, skillItems, setSkillItems }) => {
 
                 <div className={`${styles.skills}`}>
                     {
-                        skills.map((skill, idx) => <p
+                        allTags.map((tag, idx) => <p
                             key={idx}
                             className={`${styles.skill}`}
-                            onClick={() => handleAddFilter(skill)}
+                            onClick={() => onSelectFilter(tag)}
                         >
-                            {skill}
+                            {tag[1]}
                         </p>)
                     }
+
                 </div>
             </div>
         </div>

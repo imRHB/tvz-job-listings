@@ -3,29 +3,37 @@ import styles from './JobListings.module.css';
 
 import JobItemCard from "../../components/JobItemCard/JobItemCard";
 
-const JobListings = ({ jobLists, skillItems, setSkillItems }) => {
-    const filtered = jobLists.filter(job => job.skills?.map(skill => skillItems.includes(skill)));
+const filters = {
+    languages: [],
+    tools: [],
+    role: [],
+    level: []
+};
 
-    const newFil = skillItems.map(item => jobLists.map(job => job.skills.includes(item)));
-    console.log(newFil[0]);
+const JobListings = ({ jobLists }) => {
+    const handleFilter = (tag) => {
+        filters[tag[0]].push(tag[1]);
+    };
+
+    const filteredJobList = jobLists.filter(({ languages, tools, role, level }) => {
+        return (
+            filters.languages.some((x) => languages.includes(x)) ||
+            filters.tools.some((x) => tools.includes(x)) ||
+            filters.role.some((x) => role === x) ||
+            filters.level.some((x) => level === x)
+        );
+    });
+
 
     return (
         <div className={`${styles.container}`}>
             <div>
                 {
-                    filtered.length < 1 ? jobLists.map(job => <JobItemCard
+                    (filteredJobList.length === 0 ? jobLists : filteredJobList).map(job => <JobItemCard
                         key={job.id}
                         job={job}
-                        skillItems={skillItems}
-                        setSkillItems={setSkillItems}
+                        onSelectFilter={handleFilter}
                     ></JobItemCard>)
-                        :
-                        filtered.map(job => <JobItemCard
-                            key={job.id}
-                            job={job}
-                            skillItems={skillItems}
-                            setSkillItems={setSkillItems}
-                        ></JobItemCard>)
                 }
             </div>
         </div>
