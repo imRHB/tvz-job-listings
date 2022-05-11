@@ -1,23 +1,21 @@
 import React from 'react';
+import useJobs from "../../hooks/useJobs";
 import SkillItemCard from "../SkillItemCard/SkillItemCard";
 import styles from './JobFilterCard.module.css';
 
-const JobFilterCard = ({ skillItems, setSkillItems }) => {
-    const handleClearItems = () => {
-        setSkillItems([]);
-    };
+const JobFilterCard = () => {
+    const { clearFilter, filteredTags, removeFilterTag } = useJobs();
 
     return (
         <div className={`${styles.container}`}>
             <div className={`${styles.jobFilterCard}`}>
                 {
-                    skillItems?.length > 0 ? <div className={`${styles.filteredItems}`}>
+                    filteredTags?.length > 0 ? <div className={`${styles.filteredItems}`}>
                         {
-                            skillItems?.map((item, idx) => <SkillItemCard
+                            filteredTags?.map((tag, idx) => <SkillItemCard
                                 key={idx}
-                                item={item}
-                                skillItems={skillItems}
-                                setSkillItems={setSkillItems}
+                                tag={tag}
+                                removeFilterTag={removeFilterTag}
                             ></SkillItemCard>)
                         }
                     </div>
@@ -26,8 +24,8 @@ const JobFilterCard = ({ skillItems, setSkillItems }) => {
                 }
 
                 {
-                    skillItems.length > 0 && <div className={`${styles.clear}`}>
-                        <span onClick={handleClearItems}>Clear</span>
+                    filteredTags.length > 0 && <div className={`${styles.clear}`}>
+                        <span onClick={clearFilter}>Clear</span>
                     </div>
                 }
             </div>

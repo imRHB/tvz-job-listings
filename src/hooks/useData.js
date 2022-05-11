@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 const useData = () => {
     let [jobLists, setJobLists] = useState([]);
-    let [skillItems, setSkillItems] = useState([]);
+    let [filteredTags, setFilteredTags] = useState([]);
 
     useEffect(() => {
         fetch('./data.json')
@@ -10,11 +10,29 @@ const useData = () => {
             .then(data => setJobLists(data));
     }, []);
 
+    const addFilterTag = (tag) => {
+        if (!filteredTags.includes(tag)) {
+            setFilteredTags([...filteredTags, tag]);
+        }
+    };
+
+    const removeFilterTag = (id) => {
+        const restTag = filteredTags.filter((tag) => tag !== id);
+        setFilteredTags(restTag);
+    };
+
+    const clearFilter = () => {
+        setFilteredTags([]);
+    };
+
     return {
         jobLists,
         setJobLists,
-        skillItems,
-        setSkillItems
+        filteredTags,
+        setFilteredTags,
+        addFilterTag,
+        removeFilterTag,
+        clearFilter
     };
 };
 

@@ -5,12 +5,11 @@ import styles from './SkillItemCard.module.css';
 
 const clearIcon = <FontAwesomeIcon icon={faXmark} />;
 
-const SkillItemCard = ({ item, skillItems, setSkillItems }) => {
-
+const SkillItemCard = ({ tag, removeFilterTag }) => {
     return (
         <div className={`${styles.itemCard}`}>
-            <div className={`${styles.item}`}>{item}</div>
-            <div className={`${styles.close}`} onClick={() => setSkillItems(skillItems.filter(skill => skill !== item))}>{clearIcon}</div>
+            <div className={`${styles.item}`}>{tag}</div>
+            <div className={`${styles.close}`} onClick={() => removeFilterTag(tag)}>{clearIcon}</div>
         </div>
     );
 };

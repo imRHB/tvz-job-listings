@@ -1,38 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './JobListings.module.css';
 
+import useJobs from "../../hooks/useJobs";
 import JobItemCard from "../../components/JobItemCard/JobItemCard";
 
-const filters = {
-    languages: [],
-    tools: [],
-    role: [],
-    level: []
-};
+const JobListings = () => {
+    const { jobLists, filteredTags } = useJobs();
+    const [filteredJobs, setFilteredJobs] = useState([]);
 
-const JobListings = ({ jobLists }) => {
-    const handleFilter = (tag) => {
-        filters[tag[0]].push(tag[1]);
-    };
+    useEffect(() => {
+        const filteredJobLists = () => {
+            if (filteredTags) {
+                const filterJobs = jobLists.filter((job) => {
+                    return filteredTags.every((tag) => {
+                        return (
+                            job.role === tag ||
+                            job.level === tag ||
+                            job.languages.includes(tag) ||
+                            job.tools.includes(tag)
+                        );
+                    });
+                });
 
-    const filteredJobList = jobLists.filter(({ languages, tools, role, level }) => {
-        return (
-            filters.languages.some((x) => languages.includes(x)) ||
-            filters.tools.some((x) => tools.includes(x)) ||
-            filters.role.some((x) => role === x) ||
-            filters.level.some((x) => level === x)
-        );
-    });
+                setFilteredJobs(filterJobs);
+            }
 
+            else {
+                setFilteredJobs(jobLists);
+            }
+        };
+
+        filteredJobLists();
+
+    }, [filteredTags, jobLists]);
 
     return (
         <div className={`${styles.container}`}>
             <div>
                 {
-                    (filteredJobList.length === 0 ? jobLists : filteredJobList).map(job => <JobItemCard
+                    filteredJobs.map(job => <JobItemCard
                         key={job.id}
                         job={job}
-                        onSelectFilter={handleFilter}
                     ></JobItemCard>)
                 }
             </div>

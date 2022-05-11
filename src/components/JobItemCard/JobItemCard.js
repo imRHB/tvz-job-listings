@@ -1,16 +1,12 @@
 import React from 'react';
+import useJobs from "../../hooks/useJobs";
 import styles from './JobItemCard.module.css';
 
-const JobItemCard = ({ job, onSelectFilter }) => {
-
+const JobItemCard = ({ job }) => {
+    const { addFilterTag } = useJobs();
     const { company, logo, new: newJob, featured, position, role, level, postedAt, contract, location, languages, tools } = job;
 
-    let allTags = [
-        ...languages.map(tag => ["languages", tag]),
-        ...tools.map(tag => ["tools", tag]),
-        ["role", role],
-        ["level", level]
-    ];
+    const tags = [role, level, ...languages, ...tools];
 
     return (
         <div className={`${styles.card}`}>
@@ -41,12 +37,12 @@ const JobItemCard = ({ job, onSelectFilter }) => {
 
                 <div className={`${styles.skills}`}>
                     {
-                        allTags.map((tag, idx) => <p
+                        tags.map((tag, idx) => <p
                             key={idx}
                             className={`${styles.skill}`}
-                            onClick={() => onSelectFilter(tag)}
+                            onClick={() => addFilterTag(tag)}
                         >
-                            {tag[1]}
+                            {tag}
                         </p>)
                     }
 
